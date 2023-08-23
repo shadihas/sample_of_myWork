@@ -3,8 +3,8 @@
 part of utils;
 
 class Dimensions{
- late double width;
- late double height;
+static late  double width;
+static late double height;
 
   void getDimensions(double screenWidth,double screenHeight){
      width = screenWidth;

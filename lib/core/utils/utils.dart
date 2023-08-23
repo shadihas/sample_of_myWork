@@ -6,3 +6,4 @@ part 'colors.dart';
 part 'images.dart'; 
 part 'appFonts.dart';
 part 'constants.dart';
+part 'dimensions.dart';
