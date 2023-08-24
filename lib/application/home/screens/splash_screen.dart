@@ -1,13 +1,34 @@
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:tech_t/core/utils/utils.dart';
 
-class SplashScreen extends StatelessWidget {
+import 'home_screen.dart';
+
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key}); 
 
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
 
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    goToHomeScreenAfter3Seconds();
+    super.initState();
+  }
+
+void goToHomeScreenAfter3Seconds(){ 
+    Timer(const Duration(seconds: 0), () {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
+        return const HomeScreen();
+      },));
+     });
+  }
   @override
   Widget build(BuildContext context) { 
     Dimensions dimensions = Dimensions();
@@ -20,7 +41,7 @@ class SplashScreen extends StatelessWidget {
             // added the width/1.5 for the height to to preserve the image's aspect ratio.
             height: Dimensions.width/1.5,
             width: Dimensions.width/2,
-            child: Image(image: AssetImage(ImagePath.logo)),
+            child: const Image(image: AssetImage(ImagePath.logo)),
           ),
          ),
     );
