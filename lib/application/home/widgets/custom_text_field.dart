@@ -7,15 +7,18 @@ class CustomTextField extends StatelessWidget {
     super.key,
     required this.homeTextEditingController,
     required this.hintText,
+    required this.onChanged,
   });
 
   final TextEditingController homeTextEditingController;
   final String hintText;
+  final Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: homeTextEditingController,
+      onChanged: onChanged,
       cursorColor: AppColors.lightBlueColor,
       decoration: InputDecoration( 
         border: const UnderlineInputBorder(

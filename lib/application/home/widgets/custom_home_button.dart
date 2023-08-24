@@ -19,7 +19,7 @@ class CustomHomeButton extends StatelessWidget {
           text,
           style: AppFontStyle.appTextStyle(color: AppColors.wightColor)
         ),
-        width: Dimensions.screenWidth / 1.2,
+        width: Dimensions.screenWidth / 1.1,
         height: 57,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15), color: buttonColor),

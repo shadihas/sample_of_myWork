@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
 void goToHomeScreenAfter3Seconds(){ 
-    Timer(const Duration(seconds: 0), () {
+    Timer(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
         return const HomeScreen();
       },));

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tech_t/core/utils/utils.dart';
 
+import '../logic/text_home_bloc/bloc/text_home_bloc.dart';
 import '../widgets/custom_app_bar.dart';
 
 class AnimationsScreen extends StatefulWidget {
@@ -9,7 +11,7 @@ class AnimationsScreen extends StatefulWidget {
 }
 
 class _AnimationsScreenState extends State<AnimationsScreen> {
-  double containerSize = Dimensions.screenWidth/1.3;
+  double containerSize = Dimensions.screenWidth/1.2;
   BorderRadiusGeometry containerBorderRadius = BorderRadius.circular(0);
   Color containerColor = AppColors.darkBlueColor; 
 
@@ -42,10 +44,18 @@ class _AnimationsScreenState extends State<AnimationsScreen> {
           children: [
            Padding(
              padding:  EdgeInsets.only(top: 40.h),
-             child: Text("Your name", style: AppFontStyle.appTextStyle(color: AppColors.blackColor),),
+             child:BlocBuilder<TextHomeBloc, TextHomeState>(
+                    builder: (context, state) {
+                      return Text(
+                       state.text.isEmpty ? "Your name" : state.text,
+                        style: AppFontStyle.appTextStyle(
+                            color: AppColors.blackColor),
+                      );
+                    },
+                  ),
            ),
 
-            AnimatedContainer(
+            AnimatedContainer( 
               duration: Duration(seconds: 1),
               width: containerSize,
               height: containerSize,
@@ -56,9 +66,9 @@ class _AnimationsScreenState extends State<AnimationsScreen> {
             ),
             SizedBox(height: 20.h),
             Padding(
-              padding:  EdgeInsets.symmetric(vertical: 40.h),
+              padding:  EdgeInsets.symmetric(vertical: 40.h , horizontal: 30.w),
               child: Row( 
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
                     onTap: () => animateContainer(1),
