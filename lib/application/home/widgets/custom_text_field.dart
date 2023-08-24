@@ -19,6 +19,7 @@ class CustomTextField extends StatelessWidget {
     return TextField(
       controller: homeTextEditingController,
       onChanged: onChanged,
+      style: AppFontStyle.appTextStyle(color: AppColors.blackColor),
       cursorColor: AppColors.lightBlueColor,
       decoration: InputDecoration( 
         border: const UnderlineInputBorder(
