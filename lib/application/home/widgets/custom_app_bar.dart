@@ -2,7 +2,7 @@
 
 import '../../../core/utils/utils.dart';
 
-AppBar CustomAppBar({required String title}) {
+AppBar customAppBar({required String title}) {
     return AppBar(
       
       backgroundColor: AppColors.lightBlueColor,

@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
     TextEditingController homeTextEditingController = TextEditingController();
     return
     Scaffold(
-  appBar: CustomAppBar(title: "Home"),
+  appBar: customAppBar(title: "Home"),
   body: SingleChildScrollView(
     child: Column(
       children: [
@@ -75,6 +75,7 @@ class HomeScreen extends StatelessWidget {
 
   }
 }
+
 
 
 

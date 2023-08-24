@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tech_t/application/home/screens/home_screen.dart';
 import 'package:tech_t/application/home/screens/splash_screen.dart';
 
+import '../application/home/screens/animations_screen.dart';
+
 class AppRouter{
   static const String homeScreen = '/home';
   static const String splashScreen = 'splashScreen';
@@ -20,10 +22,10 @@ class AppRouter{
        return MaterialPageRoute(builder: (context) => const SplashScreen(
         
        ),);  
-    //  case animationsScreen:
-    //    return MaterialPageRoute(builder: (context) => const AnimationsScreen(
+     case animationsScreen:
+       return MaterialPageRoute(builder: (context) =>  AnimationsScreen(
         
-    //    ),);  
+       ),);  
     //  case pokemonScreen:
     //    return MaterialPageRoute(builder: (context) => const SplashScreen(
         
