@@ -23,6 +23,6 @@ class AppFontStyle{
      return TextStyle(
                         fontFamily: AppFontFamily.interRegular,
                         fontSize: AppFontSize.bigSize,
-                        color: AppColors.darkRedColor);
+                        color:color);
   } 
 }

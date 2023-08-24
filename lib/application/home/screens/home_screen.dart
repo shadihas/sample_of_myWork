@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:tech_t/router/app_router.dart';
 
 import '../../../core/utils/utils.dart';
 import '../widgets/clear_text_button.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/custom_home_button.dart';
+import '../widgets/custom_text_field.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,66 +13,69 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController homeTextEditingController = TextEditingController();
-    return Scaffold(
-      appBar: CustomAppBar(title: "Home"),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [ 
-          Column(
-            children: [ 
-              // Text field where the user can enter the input
+    return
+    Scaffold(
+  appBar: CustomAppBar(title: "Home"),
+  body: SingleChildScrollView(
+    child: Column(
+      children: [
+        
+        SizedBox(
+          // 80 is the appBar height 
+          height: (Dimensions.screenHeight/2)-80,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
               Padding(
                 padding: EdgeInsets.only(
-                    top: 50.h, bottom: 50.h, left: 20.w, right: 20.w),
-                child: TextField(
-                  controller: homeTextEditingController,
-                  decoration: InputDecoration(
-                      hintText: "Enter your name",
-                      hintStyle: AppFontStyle.appTextStyle(color: AppColors.greyTextColor)
-                          ),
+                  top: 50.h, bottom: 50.h, left: 20.w, right: 20.w),
+                child: CustomTextField(
+                  homeTextEditingController: homeTextEditingController,
+                  hintText: "Enter your name",
                 ),
               ),
-           
-              // Text widget, with a value changed based on the TextField input changed
               Text(
                 "Your name",
-                style: AppFontStyle.appTextStyle(color: AppColors.blackColor)
+                style: AppFontStyle.appTextStyle(color: AppColors.blackColor),
               ),
+              SizedBox(height: 20.h),
             ],
           ),
-          Column(
+        ),
+        SizedBox(
+          height: (Dimensions.screenHeight/2),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-            //  Clear text button, to clear the text in the Text and TextField widgets.
               const ClearTextButton(),
-            
-              SizedBox(
-                height: 20.h,
-              ),
-
+              SizedBox(height: 20.h),
               CustomHomeButton(
                 onTap: () {
-                  
+                  Navigator.of(context).pushNamed(AppRouter.animationsScreen);
                 },
                 buttonColor: AppColors.darkBlueColor,
                 text: "Go to page 1",
               ),
-              SizedBox(
-                height: 20.h,
-              ),
-               CustomHomeButton(
+              SizedBox(height: 20.h),
+              CustomHomeButton(
                 onTap: () {
-                  
+                  // Handle the onTap event for the button
                 },
                 buttonColor: AppColors.lightBlueColor,
                 text: "Go to page 2",
               ),
-               SizedBox(
-                height: 20.h,
-              ),
+              SizedBox(height: 20.h),
             ],
-          )
-        ],
-      ),
-    );
+          ),
+        ),
+      ],
+    ),
+  ),
+);
+
   }
 }
+
+
+
+

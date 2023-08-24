@@ -2,8 +2,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:tech_t/core/utils/utils.dart';
 
 import 'home_screen.dart';
@@ -23,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
 void goToHomeScreenAfter3Seconds(){ 
-    Timer(const Duration(seconds: 0), () {
+    Timer(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
         return const HomeScreen();
       },));
@@ -34,13 +32,13 @@ void goToHomeScreenAfter3Seconds(){
     Dimensions dimensions = Dimensions();
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-    dimensions.getDimensions(screenWidth, screenHeight);
+    dimensions.getScreenDimensions(screenWidth, screenHeight);
     return  Scaffold(
          body: Center(
           child: SizedBox(
             // added the width/1.5 for the height to to preserve the image's aspect ratio.
-            height: Dimensions.width/1.5,
-            width: Dimensions.width/2,
+            height: Dimensions.screenWidth/1.5,
+            width: Dimensions.screenWidth/2,
             child: const Image(image: AssetImage(ImagePath.logo)),
           ),
          ),
