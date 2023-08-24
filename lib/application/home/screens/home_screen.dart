@@ -59,7 +59,7 @@ class HomeScreen extends StatelessWidget {
               SizedBox(height: 20.h),
               CustomHomeButton(
                 onTap: () {
-                  // Handle the onTap event for the button
+                 Navigator.of(context).pushNamed(AppRouter.pokemonsScreen);
                 },
                 buttonColor: AppColors.lightBlueColor,
                 text: "Go to page 2",

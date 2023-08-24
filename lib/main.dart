@@ -11,9 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp( 
-      theme: ThemeData(appBarTheme: AppBarTheme(
-       
-      )),
+      builder: (context, child) {
+        return MediaQuery(
+                    data: MediaQuery.of(context).copyWith( 
+                        textScaleFactor: 1.0, ),
+                    child: child!);
+      }, 
       debugShowCheckedModeBanner: false, 
       onGenerateRoute: AppRouter.onGenerateRoute,
       initialRoute: AppRouter.splashScreen
