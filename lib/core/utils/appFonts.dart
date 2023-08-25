@@ -22,7 +22,7 @@ class AppFontStyle{
   static  TextStyle appTextStyle({required Color color}) {
      return TextStyle(
                         fontFamily: AppFontFamily.interRegular,
-                        fontSize: AppFontSize.mediumSize,
+                        fontSize: AppFontSize.bigSize,
                         color:color);
   } 
 }

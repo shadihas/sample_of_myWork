@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
 void goToHomeScreenAfter3Seconds(){ 
-    Timer(const Duration(seconds: 0), () {
+    Timer(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
         return const HomeScreen();
       },));
@@ -29,7 +29,7 @@ void goToHomeScreenAfter3Seconds(){
   }
   @override
   Widget build(BuildContext context) { 
-    Dimensions dimensions = Dimensions();
+    Dimensions dimensions =  Dimensions();
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     dimensions.getScreenDimensions(screenWidth, screenHeight);

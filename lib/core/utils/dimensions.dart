@@ -16,12 +16,12 @@ static final double defaultHeight = 925;
 }
 
 extension PercentSized on int {
-  double get h => ((this * Dimensions.screenHeight) / Dimensions.defaultHeight);
+  double get h => ((this * MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.height) / Dimensions.defaultHeight);
 
-  double get w => ((this * Dimensions.screenWidth) / Dimensions.defaultWidth);
+  double get w => ((this * MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.width) / Dimensions.defaultWidth);
 
   double get sp =>
-      ((Dimensions.screenWidth * Dimensions.screenHeight) * this) /
+      ((MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.width * MediaQueryData.fromWindow(WidgetsBinding.instance.window).size.height) * this) /
       (Dimensions.defaultHeight * Dimensions.defaultWidth);
 }
 

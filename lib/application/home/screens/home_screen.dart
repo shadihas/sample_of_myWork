@@ -18,11 +18,10 @@ class HomeScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        appBar: customAppBar(title: "Home"),
+        appBar: customAppBar(title: "Home" ,context: context),
         body: SingleChildScrollView(
-          child: SizedBox(
-            // 80 is the app bar height
-            height: Dimensions.screenHeight-80,
+          child: SizedBox( 
+            height: Dimensions.screenHeight- 80,
             child: Column(
               children: [
                 Column(
@@ -76,7 +75,8 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(height: 20.h),
                       CustomHomeButton(
                         onTap: () {
-                          Navigator.of(context).pushNamed(AppRouter.pokemonsScreen);
+                          
+                           Navigator.of(context).pushNamed(AppRouter.pokemonsScreen);
                         },
                         buttonColor: AppColors.lightBlueColor,
                         text: "Go to page 2",
