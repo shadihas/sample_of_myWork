@@ -1,13 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:flutter_bloc/flutter_bloc.dart'; 
 import 'package:tech_t/application/home/widgets/custom_app_bar.dart';
-import 'package:tech_t/core/utils/utils.dart';
-
+import 'package:tech_t/core/utils/utils.dart'; 
 import '../logic/pokemons_bloc/bloc/pokemons_bloc.dart';
+import '../widgets/pokemons_card.dart';
 
 class PokemonsScreen extends StatefulWidget {
   const PokemonsScreen({super.key});
@@ -17,125 +13,123 @@ class PokemonsScreen extends StatefulWidget {
 }
 
 class _PokemonsScreenState extends State<PokemonsScreen> {
-  late Bloc pokemonsBloc;
-  final imageUrl = 'https://via.placeholder.com/300.png';
+  late PokemonsBloc pokemonsBloc;
+  final ScrollController scrollController = ScrollController();
+
   @override
   void initState() {
     pokemonsBloc = BlocProvider.of<PokemonsBloc>(context);
-    if (pokemonsBloc.state is! PokemonsFetchedSuccessfullyState) {
-      pokemonsBloc.add(GetPokemonsSubmittedEvent());
+    if (pokemonsBloc.state.pokemonsIdList.isEmpty) {
+      _fetchPokemonsInfo();
     }
+
+    scrollController.addListener(() {
+      if ((scrollController.position.maxScrollExtent ==
+              scrollController.offset) &&
+          (!pokemonsBloc.state.isLoading) &&
+          (pokemonsBloc.state.totalPokemonsCount >
+              (pokemonsBloc.state.pokemonsIdList.length))) {
+        _fetchPokemonsInfo();
+      }
+    });
 
     super.initState();
   }
 
+  _fetchPokemonsInfo() {
+    pokemonsBloc.add(GetPokemonsSubmittedEvent(
+        pokemonsIdList: pokemonsBloc.state.pokemonsIdList,
+        pokemonsList: pokemonsBloc.state.pokemonsList,
+        offset: pokemonsBloc.state.pokemonsIdList.length));
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: () async => pokemonsBloc.add(GetPokemonsSubmittedEvent()),
-      child: Scaffold(
+    print(pokemonsBloc.state.pokemonsIdList.length);
+    return Scaffold(
         appBar: customAppBar(title: "pokemons", context: context),
-        body: BlocBuilder<PokemonsBloc, PokemonsState>(
-          builder: (context, state) {
-            if (state is PokemonsLoadingState) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (state is PokemonsFailedState) {
-              return Container(
-                  height: Dimensions.screenHeight / 2,
-                  width: Dimensions.screenWidth,
-                  alignment: Alignment.center,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        state.message,
-                        style: AppFontStyle.appTextStyle(
-                            color: AppColors.blackColor),
-                      ),
-                      SizedBox(
-                        height: 30.h,
-                      ),
-                      GestureDetector(
-                          onTap: () =>
-                              pokemonsBloc.add(GetPokemonsSubmittedEvent()),
-                          child: const Icon(
-                            Icons.refresh,
-                            color: AppColors.darkBlueColor,
-                          ))
-                    ],
-                  ));
-            } else if (state is PokemonsFetchedSuccessfullyState) {
-              return ListView.builder(
-                itemCount: state.response.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: EdgeInsets.only(top: 30.h, right: 20.w, left: 20.w),
-                    height: 130.w,
-                    decoration: BoxDecoration(
-                        color: AppColors.wightColor,
-                        borderRadius: BorderRadius.circular(14),
-                        boxShadow: const [
-                          BoxShadow(
-                              offset: Offset(0, 4),
-                              blurRadius: 4,
-                              spreadRadius: 3,
-                              color: AppColors.lightGreyTextColor)
-                        ]),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+        body: SingleChildScrollView(
+          controller: scrollController,
+          child: Column(
+            children: [
+              BlocBuilder<PokemonsBloc, PokemonsState>(
+                builder: (context, state) {
+                  if (state is PokemonsLoadingState) {
+                    return Column(
                       children: [
-                        Container(
-                          height: 130.w,
-                          width: 130.w,
-                          decoration: BoxDecoration(
-                              color: AppColors.wightColor,
-                              borderRadius: BorderRadius.circular(14)),
-                          child: CachedNetworkImage(
-                            imageUrl: Constants.pokemonsImagesURL(
-                                id: state.pokemonsIdList[index]),
-                            placeholder: (context, url) => Shimmer.fromColors(
-                              baseColor: AppColors.lightGreyTextColor,
-                              highlightColor: AppColors.wightColor,
-                              child: Container(
-                                height: 130.h,
-                                width: 130.h,
-                                decoration: BoxDecoration(
-                                    color: AppColors.lightGreyTextColor,
-                                    borderRadius: BorderRadius.circular(14)),
-                              ),
-                            ), // Placeholder while loading
-                            errorWidget: (context, url, error) =>
-                                Icon(Icons.error), // Widget to display on error
-                            fadeInDuration: Duration(milliseconds: 500),
-                            fadeOutDuration: Duration(milliseconds: 500),
-                            fit: BoxFit.fill,
+                        Column(
+                          children: List.generate(
+                              state.pokemonsList.length,
+                              (index) => PokemonsCard(
+                                    state: state,
+                                    index: index,
+                                  )),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                          child: Center(
+                            child: CircularProgressIndicator(),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.all(10.w),
-                          child: SizedBox(
-                            width: 220.w,
-                            child: Text(
-                              state.response[index].name,
+                      ],
+                    );
+                  } else if (state is PokemonsFailedState) {
+                    return Column(
+                      children: [
+                        Column(
+                          children: List.generate(
+                              state.pokemonsList.length,
+                              (index) => PokemonsCard(
+                                    state: state,
+                                    index: index,
+                                  )),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              state.message,
                               style: AppFontStyle.appTextStyle(
                                   color: AppColors.blackColor),
-                              softWrap: true,
                             ),
-                          ),
-                        )
+                            SizedBox(
+                              height: 30.h,
+                            ),
+                            GestureDetector(
+                                onTap: () => _fetchPokemonsInfo(),
+                                child: const Icon(
+                                  Icons.refresh,
+                                  color: AppColors.darkBlueColor,
+                                ))
+                          ],
+                        ),
                       ],
-                    ),
-                  );
+                    );
+                  } else if (state is PokemonsFetchedSuccessfullyState) {
+                    return Column(
+                      children: List.generate(
+                        state.pokemonsList.length,
+                        (index) {
+                          return PokemonsCard(
+                            state: state,
+                            index: index,
+                          );
+                        },
+                      ),
+                    );
+                  } else {
+                    return const SizedBox();
+                  }
                 },
-              );
-            } else {
-              return const SizedBox();
-            }
-          },
-        ),
-      ),
-    );
+              ),
+            ],
+          ),
+        ));
   }
 }
