@@ -1,8 +1,8 @@
 part of 'text_home_bloc.dart';
 
 class TextHomeState {
-  String text;
-  TextHomeState({
+  final String text;
+  const TextHomeState({
     required this.text,
   });
- } 
+}

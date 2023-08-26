@@ -5,12 +5,13 @@ part 'text_home_event.dart';
 part 'text_home_state.dart';
 
 class TextHomeBloc extends Bloc<TextHomeEvent, TextHomeState> {
-  TextHomeBloc() : super(TextHomeState(text: "")) {
+  TextHomeBloc() : super(const TextHomeState(text: "")) {
     on<TextHomeTypedEvent>((event, emit) {
-     emit(TextHomeState(text: event.text));
+      emit(TextHomeState(text: event.text));
     });
+
     on<TextHomeClearedEvent>((event, emit) {
-     emit(TextHomeState(text: ""));
+      emit(const TextHomeState(text: ""));
     });
   }
 }

@@ -7,22 +7,23 @@ class CustomHomeButton extends StatelessWidget {
   final Color buttonColor;
   final Function()? onTap;
   const CustomHomeButton(
-      {super.key, required this.text, required this.buttonColor,required this.onTap });
+      {super.key,
+      required this.text,
+      required this.buttonColor,
+      required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap ,
+      onTap: onTap,
       child: Container(
         alignment: Alignment.center,
-        child: Text(
-          text,
-          style: AppFontStyle.appTextStyle(color: AppColors.wightColor)
-        ),
         width: Dimensions.screenWidth / 1.1,
         height: 57,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15), color: buttonColor),
+        child: Text(text,
+            style: AppFontStyle.appTextStyle(color: AppColors.wightColor)),
       ),
     );
   }

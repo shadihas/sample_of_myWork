@@ -27,7 +27,10 @@ class PokemonsBloc extends Bloc<PokemonsEvent, PokemonsState> {
     try {
       final List<dynamic> response =
           await pokemonsRepository.getPokemonsList(offset: event.offset);
+          // response[0] is a List that has PokemonsInfo(name, url)
       final newPokemonsList = response[0] as List<Result>;
+      // response[1] is the count of all the list of pokemons that 
+      // we need for pagination.
       final totalPokemonsCount = response[1] as int;
 
       pokemonsList.addAll(newPokemonsList);

@@ -5,7 +5,7 @@ import 'package:tech_t/application/home/screens/splash_screen.dart';
 
 import '../application/home/screens/animations_screen.dart';
 
-class AppRouter{
+class AppRouter {
   static const String homeScreen = '/home';
   static const String splashScreen = 'splashScreen';
   static const String animationsScreen = 'animationsScreen';
@@ -13,29 +13,31 @@ class AppRouter{
 
   const AppRouter._();
 
-  static Route<dynamic> onGenerateRoute(RouteSettings settings){
-   switch (settings.name) {
-     case homeScreen:
-       return MaterialPageRoute(builder: (context) => const HomeScreen(
-        
-       ),); 
-     case splashScreen:
-       return MaterialPageRoute(builder: (context) => const SplashScreen(
-        
-       ),);  
-     case animationsScreen:
-       return MaterialPageRoute(builder: (context) =>  AnimationsScreen(
-        
-       ),);  
-     case pokemonsScreen:
-       return MaterialPageRoute(builder: (context) => const PokemonsScreen(
-        
-       ),);  
+  static Route<dynamic> onGenerateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case homeScreen:
+        return MaterialPageRoute(
+          builder: (context) => const HomeScreen(),
+        );
+      case splashScreen:
+        return MaterialPageRoute(
+          builder: (context) => const SplashScreen(),
+        );
+      case animationsScreen:
+        return MaterialPageRoute(
+          builder: (context) => const AnimationsScreen(),
+        );
+      case pokemonsScreen:
+        return MaterialPageRoute(
+          builder: (context) => const PokemonsScreen(),
+        );
 
-     default: 
-   }
-   return MaterialPageRoute(builder: (context) => const Scaffold(
+      default:
+    }
+    return MaterialPageRoute(
+      builder: (context) => const Scaffold(
         body: Text('No route defined'),
-       ),); 
+      ),
+    );
   }
 }

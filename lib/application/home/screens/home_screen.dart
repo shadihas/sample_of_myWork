@@ -18,10 +18,10 @@ class HomeScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        appBar: customAppBar(title: "Home" ,context: context),
+        appBar: customAppBar(title: "Home", context: context),
         body: SingleChildScrollView(
-          child: SizedBox( 
-            height: Dimensions.screenHeight- 80,
+          child: SizedBox(
+            height: Dimensions.screenHeight * 0.85,
             child: Column(
               children: [
                 Column(
@@ -42,7 +42,7 @@ class HomeScreen extends StatelessWidget {
                     BlocBuilder<TextHomeBloc, TextHomeState>(
                       builder: (context, state) {
                         return Text(
-                         state.text.isEmpty ? "Your name" : state.text,
+                          state.text.isEmpty ? "Your name" : state.text,
                           style: AppFontStyle.appTextStyle(
                               color: AppColors.blackColor),
                         );
@@ -51,16 +51,16 @@ class HomeScreen extends StatelessWidget {
                     SizedBox(height: 20.h),
                   ],
                 ),
-               
                 Flexible(
                   fit: FlexFit.loose,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                       ClearTextButton(
+                      ClearTextButton(
                         onTap: () {
-                           homeTextEditingController.clear();
-                          BlocProvider.of<TextHomeBloc>(context).add(TextHomeClearedEvent());
+                          homeTextEditingController.clear();
+                          BlocProvider.of<TextHomeBloc>(context)
+                              .add(TextHomeClearedEvent());
                         },
                       ),
                       SizedBox(height: 20.h),
@@ -75,8 +75,8 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(height: 20.h),
                       CustomHomeButton(
                         onTap: () {
-                          
-                           Navigator.of(context).pushNamed(AppRouter.pokemonsScreen);
+                          Navigator.of(context)
+                              .pushNamed(AppRouter.pokemonsScreen);
                         },
                         buttonColor: AppColors.lightBlueColor,
                         text: "Go to page 2",

@@ -1,10 +1,9 @@
 part of 'pokemons_bloc.dart';
 
-@immutable
 abstract class PokemonsState {
-  List<Result> pokemonsList;
-  List<int> pokemonsIdList;
-  int totalPokemonsCount;
+ final List<Result> pokemonsList;
+ final List<int> pokemonsIdList;
+ final int totalPokemonsCount;
   bool isLoading;
   PokemonsState(
       {required this.pokemonsList,
@@ -27,7 +26,8 @@ class PokemonsLoadingState extends PokemonsState {
             isLoading: true);
 }
 
-class PokemonsFetchedSuccessfullyState extends PokemonsState {
+class PokemonsFetchedSuccessfullyState extends PokemonsState { 
+  @override
   final int totalPokemonsCount;
 
   PokemonsFetchedSuccessfullyState({

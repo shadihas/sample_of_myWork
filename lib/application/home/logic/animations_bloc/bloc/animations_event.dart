@@ -1,12 +1,13 @@
 part of 'animations_bloc.dart';
 
-@immutable
-abstract class AnimationsEvent {} 
+
+abstract class AnimationsEvent {}
+
 class AnimationsChangedEvent extends AnimationsEvent {
-   BorderRadiusGeometry containerBorderRadius;
+  BorderRadiusGeometry containerBorderRadius;
   Color containerColor;
   AnimationsChangedEvent({
     required this.containerBorderRadius,
     required this.containerColor,
   });
- }
+}

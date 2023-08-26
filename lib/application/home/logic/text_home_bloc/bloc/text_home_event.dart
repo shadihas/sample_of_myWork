@@ -4,11 +4,10 @@ part of 'text_home_bloc.dart';
 abstract class TextHomeEvent {}
 
 class TextHomeTypedEvent extends TextHomeEvent {
-String text;
+  final String text;
   TextHomeTypedEvent({
     required this.text,
   });
 }
-class TextHomeClearedEvent extends TextHomeEvent{
- 
-}
+
+class TextHomeClearedEvent extends TextHomeEvent {}

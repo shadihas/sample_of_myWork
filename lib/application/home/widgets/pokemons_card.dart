@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../core/utils/utils.dart';
@@ -7,15 +8,15 @@ import '../logic/pokemons_bloc/bloc/pokemons_bloc.dart';
 
 class PokemonsCard extends StatelessWidget {
   int index;
-  PokemonsState state;
-   PokemonsCard({
+  late PokemonsBloc pokemonsBloc;
+  PokemonsCard({
     super.key,
     required this.index,
-    required this.state
   });
 
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
+    pokemonsBloc = BlocProvider.of<PokemonsBloc>(context);
     return Container(
       margin: EdgeInsets.only(top: 30.h, right: 20.w, left: 20.w),
       height: 130.w,
@@ -40,7 +41,7 @@ class PokemonsCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(14)),
             child: CachedNetworkImage(
               imageUrl: Constants.pokemonsImagesURL(
-                  id: state.pokemonsIdList[index]),
+                  id: pokemonsBloc.state.pokemonsIdList[index]),
               placeholder: (context, url) => Shimmer.fromColors(
                 baseColor: AppColors.lightGreyTextColor,
                 highlightColor: AppColors.wightColor,
@@ -53,9 +54,9 @@ class PokemonsCard extends StatelessWidget {
                 ),
               ), // Placeholder while loading
               errorWidget: (context, url, error) =>
-                  Icon(Icons.error), // Widget to display on error
-              fadeInDuration: Duration(milliseconds: 500),
-              fadeOutDuration: Duration(milliseconds: 500),
+                  const Icon(Icons.error), // Widget to display on error
+              fadeInDuration: const Duration(milliseconds: 500),
+              fadeOutDuration: const Duration(milliseconds: 500),
               fit: BoxFit.fill,
             ),
           ),
@@ -64,9 +65,8 @@ class PokemonsCard extends StatelessWidget {
             child: SizedBox(
               width: 220.w,
               child: Text(
-                state.pokemonsList[index].name,
-                style: AppFontStyle.appTextStyle(
-                    color: AppColors.blackColor),
+                pokemonsBloc.state.pokemonsList[index].name,
+                style: AppFontStyle.appTextStyle(color: AppColors.blackColor),
                 softWrap: true,
               ),
             ),
