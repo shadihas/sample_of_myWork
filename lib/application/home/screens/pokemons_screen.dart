@@ -28,7 +28,7 @@ class _PokemonsScreenState extends State<PokemonsScreen> {
     scrollController.addListener(() {
       if ((scrollController.position.maxScrollExtent ==
               scrollController.offset) &&
-          (pokemonsBloc.state is PokemonsLoadingState) &&
+          (pokemonsBloc.state !is PokemonsLoadingState) &&
           (pokemonsBloc.state.totalPokemonsCount >
               (pokemonsBloc.state.pokemonsIdList.length))) {
         _fetchPokemonsInfo();
