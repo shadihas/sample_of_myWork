@@ -73,7 +73,7 @@ class _PokemonsScreenState extends State<PokemonsScreen> {
                         ),
                         state.pokemonsList.isEmpty
                             ? SizedBox(
-                                height: Dimensions.screenHeight / 2,
+                                height: Dimensions.screenHeight * 0.85,
                                 child: const CustomLoader(),
                               )
                             : Shimmer.fromColors(
