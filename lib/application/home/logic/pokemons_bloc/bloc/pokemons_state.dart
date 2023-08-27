@@ -29,6 +29,7 @@ class PokemonsLoadingState extends PokemonsState {
 }
 
 class PokemonsFetchedSuccessfullyState extends PokemonsState {
+  @override
   final int totalPokemonsCount;
 
   PokemonsFetchedSuccessfullyState({

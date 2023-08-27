@@ -17,7 +17,7 @@ class PokemonsRepositoryImpl implements PokemonsRepository {
         .handleResponse(await networkClient.buildHttpResponse(
       Constants.GET_POKEMONS_LIST_ENDPOINT,
       method: HttpMethod.GET,
-      queryParameters: {"offset": "$offset", "limit": "5"},
+      queryParameters: {"offset": "$offset", "limit": "20"},
     )));
 
     return [

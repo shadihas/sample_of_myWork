@@ -10,14 +10,15 @@ part 'pokemons_state.dart';
 class PokemonsBloc extends Bloc<PokemonsEvent, PokemonsState> {
   final PokemonsRepository pokemonsRepository;
 
-  PokemonsBloc({required this.pokemonsRepository})
-      : super(PokemonsInitial()) {
+  PokemonsBloc({required this.pokemonsRepository}) : super(PokemonsInitial()) {
     on<GetPokemonsSubmittedEvent>(_onGetPokemonsSubmitted);
   }
 
   Future<void> _onGetPokemonsSubmitted(
       GetPokemonsSubmittedEvent event, Emitter<PokemonsState> emit) async {
-    emit(PokemonsLoadingState(pokemonsIdList: state.pokemonsIdList, pokemonsList: state.pokemonsList));
+    emit(PokemonsLoadingState(
+        pokemonsIdList: state.pokemonsIdList,
+        pokemonsList: state.pokemonsList));
 
     try {
       final response =
