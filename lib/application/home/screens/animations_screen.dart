@@ -54,6 +54,7 @@ class AnimationsScreen extends StatelessWidget {
                 Padding(
                   padding:
                       EdgeInsets.symmetric(vertical: 40.h, horizontal: 30.w),
+                      // Buttons to change the state of the animated container
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

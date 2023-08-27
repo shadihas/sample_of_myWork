@@ -23,11 +23,12 @@ class PokemonsBloc extends Bloc<PokemonsEvent, PokemonsState> {
     try {
       final response =
           await pokemonsRepository.getPokemonsList(offset: event.offset);
-
+      // response[0] is the list of pokemons model info(name & url)
       final newPokemonsList = response[0] as List<Result>;
+      // response[1] is total pokemons count for pagination to know when to stop retrieving data
       final totalPokemonsCount = response[1] as int;
-
-      final updatedPokemonsList = [...state.pokemonsList, ...newPokemonsList];
+      // Adding the incoming list of pokemons from Api to the existing list
+      final updatedPokemonsList = [...state.pokemonsList, ...newPokemonsList]; 
       final updatedIdsList = [
         ...state.pokemonsIdList,
         ...newPokemonsList.map((e) => _extractPokemonId(e.url)),
@@ -46,7 +47,7 @@ class PokemonsBloc extends Bloc<PokemonsEvent, PokemonsState> {
       ));
     }
   }
-
+// to extract the pokemon's id from the url
   int _extractPokemonId(String url) {
     final idRegExp = RegExp(r'/(\d+)/$');
     final match = idRegExp.firstMatch(url);

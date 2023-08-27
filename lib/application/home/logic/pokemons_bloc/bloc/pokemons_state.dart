@@ -3,14 +3,12 @@ part of 'pokemons_bloc.dart';
 abstract class PokemonsState {
   final List<Result> pokemonsList;
   final List<int> pokemonsIdList;
-  final int totalPokemonsCount;
-  final bool isLoading;
+  final int totalPokemonsCount; 
 
   PokemonsState({
     required this.pokemonsList,
     required this.pokemonsIdList,
-    this.totalPokemonsCount = 0,
-    this.isLoading = false,
+    this.totalPokemonsCount = 0, 
   });
 }
 
