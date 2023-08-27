@@ -40,7 +40,7 @@ class _PokemonsScreenState extends State<PokemonsScreen> {
 
   // Fetch more pokemons based on pagination
   _fetchPokemonsInfo() {
-    pokemonsBloc.add(GetPokemonsSubmittedEvent( 
+    pokemonsBloc.add(GetPokemonsSubmittedEvent(
         offset: pokemonsBloc.state.pokemonsIdList.length));
   }
 
@@ -53,7 +53,7 @@ class _PokemonsScreenState extends State<PokemonsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: customAppBar(title: "pokemons", context: context),
+        appBar: customAppBar(title: "pokemons"),
         body: SingleChildScrollView(
           controller: scrollController,
           child: Column(

@@ -15,7 +15,7 @@ class AnimationsScreen extends StatelessWidget {
     double containerSize = Dimensions.screenWidth / 1.2;
     Bloc animationsBloc = BlocProvider.of<AnimationsBloc>(context);
     return Scaffold(
-      appBar: customAppBar(title: "Animations", context: context),
+      appBar: customAppBar(title: "Animations"),
       body: Center(
         child: SingleChildScrollView(
           child: SizedBox(

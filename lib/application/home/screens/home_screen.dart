@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-        appBar: customAppBar(title: "Home", context: context),
+        appBar: customAppBar(title: "Home"),
         body: SingleChildScrollView(
           child: SizedBox(
             height: Dimensions.screenHeight * 0.85,
