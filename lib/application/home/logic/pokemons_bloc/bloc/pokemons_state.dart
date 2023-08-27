@@ -1,15 +1,17 @@
 part of 'pokemons_bloc.dart';
 
 abstract class PokemonsState {
- final List<Result> pokemonsList;
- final List<int> pokemonsIdList;
- final int totalPokemonsCount;
-  bool isLoading;
-  PokemonsState(
-      {required this.pokemonsList,
-      required this.pokemonsIdList,
-      this.totalPokemonsCount = 0,
-      this.isLoading = false});
+  final List<Result> pokemonsList;
+  final List<int> pokemonsIdList;
+  final int totalPokemonsCount;
+  final bool isLoading;
+
+  PokemonsState({
+    required this.pokemonsList,
+    required this.pokemonsIdList,
+    this.totalPokemonsCount = 0,
+    this.isLoading = false,
+  });
 }
 
 class PokemonsInitial extends PokemonsState {
@@ -21,13 +23,12 @@ class PokemonsLoadingState extends PokemonsState {
     required List<Result> pokemonsList,
     required List<int> pokemonsIdList,
   }) : super(
-            pokemonsList: pokemonsList,
-            pokemonsIdList: pokemonsIdList,
-            isLoading: true);
+          pokemonsList: pokemonsList,
+          pokemonsIdList: pokemonsIdList,
+        );
 }
 
-class PokemonsFetchedSuccessfullyState extends PokemonsState { 
-  @override
+class PokemonsFetchedSuccessfullyState extends PokemonsState {
   final int totalPokemonsCount;
 
   PokemonsFetchedSuccessfullyState({
@@ -35,10 +36,10 @@ class PokemonsFetchedSuccessfullyState extends PokemonsState {
     required List<int> pokemonsIdList,
     required this.totalPokemonsCount,
   }) : super(
-            pokemonsList: pokemonsList,
-            pokemonsIdList: pokemonsIdList,
-            totalPokemonsCount: totalPokemonsCount,
-            isLoading: false);
+          pokemonsList: pokemonsList,
+          pokemonsIdList: pokemonsIdList,
+          totalPokemonsCount: totalPokemonsCount,
+        );
 }
 
 class PokemonsFailedState extends PokemonsState {
@@ -49,7 +50,7 @@ class PokemonsFailedState extends PokemonsState {
     required List<int> pokemonsIdList,
     required this.message,
   }) : super(
-            pokemonsList: pokemonsList,
-            pokemonsIdList: pokemonsIdList,
-            isLoading: false);
+          pokemonsList: pokemonsList,
+          pokemonsIdList: pokemonsIdList,
+        );
 }

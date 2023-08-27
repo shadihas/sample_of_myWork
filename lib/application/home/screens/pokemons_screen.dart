@@ -40,9 +40,7 @@ class _PokemonsScreenState extends State<PokemonsScreen> {
 
   // Fetch more pokemons based on pagination
   _fetchPokemonsInfo() {
-    pokemonsBloc.add(GetPokemonsSubmittedEvent(
-        pokemonsIdList: pokemonsBloc.state.pokemonsIdList,
-        pokemonsList: pokemonsBloc.state.pokemonsList,
+    pokemonsBloc.add(GetPokemonsSubmittedEvent( 
         offset: pokemonsBloc.state.pokemonsIdList.length));
   }
 
