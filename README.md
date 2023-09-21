@@ -1,12 +1,8 @@
-# tech_t 
-
-# OSOSS Flutter Developer Technical Test
-
-This repository contains my solution for the OSOSS technical test for Flutter developers. The purpose of this test is to evaluate my proficiency in Flutter development, including clean code practices, problem-solving skills, and understanding of UI/UX implementation.
+# sample_of_myWork 
 
 ## Task Overview
 
-The goal of this test was to create a Flutter application with the following features:
+The goal of this sample is to show how I write clean code including tests.
 
 1. **Splash Screen:** Display the Flutter logo at the center of the screen for 3 seconds before proceeding to the Home screen.
 
@@ -26,11 +22,9 @@ The goal of this test was to create a Flutter application with the following fea
    - Displays a loader in the center while data is loading.
    - Displays a list of Pokémon cards once the data is fetched.
    - Each card includes an image and name of the Pokémon.
-   - Bonus: Pokémon images are displayed.
 
 ## Implementation Highlights
 
-In addition to the main features, I implemented the following enhancements:
 
 - **Pagination:** Implemented pagination for fetching Pokémon data(name and image) in chunks for  Faster loading, efficient data use, smooth scrolling, instant interaction, memory efficiency, scalability, and optimized APIs for enhanced performance on the Pokemons screen.
 
@@ -46,6 +40,3 @@ To run the application on your local machine, follow these steps:
 
 ## Contact
 Developed by Shadi Hasan . Feel free to reach out at shadihas2@gmail.com for any questions or inquiries.
-
- ## Acknowledgments
-I would like to express my appreciation to OSOSS for providing this opportunity to showcase my Flutter development skills. This project allowed me to demonstrate my abilities and learn valuable concepts in Flutter app development.
