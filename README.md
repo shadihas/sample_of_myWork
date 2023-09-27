@@ -36,7 +36,7 @@ To run the application on your local machine, follow these steps:
 
 1. Clone this repository: 
 
-   git clone https://github.com/shadihas/tech_t.git
+   https://github.com/shadihas/sample_of_myWork.git
 
 ## Contact
 Developed by Shadi Hasan . Feel free to reach out at shadihas2@gmail.com for any questions or inquiries.
